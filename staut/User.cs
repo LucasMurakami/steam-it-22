@@ -35,9 +35,6 @@ namespace Staut
             _balance = 0.0;
         }
 
-        public User() {
-        }
-
         private string Name
         {
             get => _name;

@@ -51,9 +51,9 @@ namespace Staut {
             Console.ReadKey();
             Console.Clear();
             Console.WriteLine("Compra realizada com sucesso!");
+            Console.Clear();
+            Console.WriteLine("Compra realizada com sucesso!");
             player.PlaySync();
-
-
             return true;
         }
 
@@ -70,7 +70,7 @@ namespace Staut {
             //     builder.Append(item.Name + " | " + item.Price + "\n");
             // }
         }
-        
+
         public void listCart() {
             StringBuilder builder = new StringBuilder();
             builder.Append("== GAMES ==\n");

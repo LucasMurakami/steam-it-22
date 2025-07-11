@@ -12,25 +12,27 @@ namespace Staut
         private String _name;
         private String _password;
         private String _email;
-        private double _balance = 0.0;
-        private readonly Library _library = new Library(new List<Game>(), new List<Item>());
+        private double _balance;
+        private readonly Library _library;
         private String _description;
         private Status _status;
-        private readonly Cart _cart = new Cart();
-        private int _gems = 0;
+        private readonly Cart _cart;
+        private int _gems;
 
-        public User(string username, string password, string name, string email, double balance, string description,
-            Status status, int gems)
+        public User(string username, string password, string name, string email, string description,
+            Status status)
         {
             _id = ID++;
             _username = username;
             _password = password;
             _name = name;
             _email = email;
-            _balance = balance;
             _description = description;
             _status = status;
-            _gems = gems;
+            _gems = 0;
+            _library = new Library(new List<Game>(), new List<Item>());
+            _cart = new Cart();
+            _balance = 0.0;
         }
 
 

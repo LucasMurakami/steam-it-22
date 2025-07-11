@@ -51,9 +51,9 @@ Generated\ Files/
 *.csproj.user
 
 # Build results
-[Bb]in/
-[Oo]bj/
-[Ll]og/
+bin/
+obj/
+log/
 *.exe
 *.dll
 *.lib
@@ -108,18 +108,6 @@ yarn-debug.log
 yarn-error.log
 package-lock.json
 yarn.lock
-
-# ========================
-# Python (optional if you use it)
-# ========================
-__pycache__/
-*.py[cod]
-*.egg
-*.egg-info/
-.eggs/
-dist/
-build/
-pip-log.txt
 
 # ========================
 # JetBrains IDEs Shared (optional but safe)

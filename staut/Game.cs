@@ -11,6 +11,7 @@ namespace Staut {
         private List<Item> _content;
         private int _totalPurchase;
         private Category _category;
+        private int _gems;
 
         public int Id => _id;
 
@@ -20,40 +21,49 @@ namespace Staut {
 
         public DateTime PublishedAt => _publishedAt;
 
-        public double Price
-        {
+        public double Price {
             get => _price;
             set => _price = value;
         }
 
-        public List<Item> Content
-        {
+        public List<Item> Content {
             get => _content;
-            set => _content = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public int TotalPurchase
-        {
+        public int TotalPurchase {
             get => _totalPurchase;
             set => _totalPurchase = value;
         }
 
-        public Category Category
-        {
+        public Category Category {
             get => _category;
             set => _category = value;
         }
 
-        public Game(int id, string name, string publisher, DateTime publishedAt, double price, List<Item> content, int totalPurchase, Category category)
-        {
+        public bool addContent(Item item) {
+            if (item != null) {
+                _content.Add(item);
+                return true;
+            }
+
+            return false;
+        }
+
+        public int Gems {
+            get => _gems;
+        }
+
+        public Game(int id, string name, string publisher, DateTime publishedAt, double price, int totalPurchase,
+            Category category, int gems) {
             _id = id;
             _name = name;
             _publisher = publisher;
             _publishedAt = publishedAt;
             _price = price;
-            _content = content;
+            _content = new List<Item>();
             _totalPurchase = totalPurchase;
             _category = category;
+            _gems = gems;
         }
     }
 }

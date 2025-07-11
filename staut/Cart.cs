@@ -15,21 +15,9 @@ namespace Staut {
         static string moneySound;
         SoundPlayer player;
 
-        static void Main(string[] args) {
-            User user = new User(
-                username: "sharkboy99",
-                password: "senha123",
-                name: "Henrique Schultz",
-                email: "henrique@devmail.com",
-                description: "Desenvolvedor focado em ser fullstack 🧠🔥",
-                status: Status.Online
-            );
-
-            user.checkCart.purchase();
-
-        }
+        
         public Cart(User user) {
-            moneySound = "sounds/money.wav";
+            moneySound = "C:/Users/Fernando_S/RiderProjects/steam-it-22/staut/sounds/money.wav";
             player = new SoundPlayer(moneySound);
             player.Load();
             this.games = new List<Game>();

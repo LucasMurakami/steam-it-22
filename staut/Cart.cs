@@ -29,30 +29,30 @@ namespace Staut {
             return true;
         }
 
-        // public void listGames() {
-        //     StringBuilder builder = new StringBuilder();
-        //     foreach (Game game in games) {
-        //         builder.Append(game.getName() + " | " + game.getPrice() + "\n");
-        //     }
-        // }
+        public void listGames() {
+            StringBuilder builder = new StringBuilder();
+            foreach (Game game in games) {
+                builder.Append(game.Name + " | " + game.Price + "\n");
+            }
+        }
 
-        // public void listItems() {
-        //     StringBuilder builder = new StringBuilder();
-        //     foreach (Item item in items) {
-        //         builder.Append(item.getName() + " | " + item.getPrice() + "\n");
-        //     }
-        // }
+        public void listItems() {
+            StringBuilder builder = new StringBuilder();
+            foreach (Item item in items) {
+                builder.Append(item.Name + " | " + item.Price + "\n");
+            }
+        }
         
-        // public void listCart() {
-        //     StringBuilder builder = new StringBuilder();
-        //     builder.Append("== GAMES ==\n");
-        //     foreach (Game game in games) {
-        //         builder.Append(game.getName() + " | " + game.getPrice() + "\n");
-        //     }
-        //     builder.Append("== GAMES ==\n");
-        //     foreach (Item item in items) {
-        //         builder.Append(item.getName() + " | " + item.getPrice() + "\n");
-        //     }
-        // }
+        public void listCart() {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("== GAMES ==\n");
+            foreach (Game game in games) {
+                builder.Append(game.Name + " | " + game.Price + "\n");
+            }
+            builder.Append("== GAMES ==\n");
+            foreach (Item item in items) {
+                builder.Append(item.Name + " | " + item.Price + "\n");
+            }
+        }
     }
 }

@@ -2,13 +2,13 @@ using System;
 
 namespace Staut {
     public abstract class Item {
-        private int id;
-        private String name;
-        private double price;
-        private DateTime? obtainedDate;
-        private Game game;
-        private String description;
-        private Rarity rarity;
+        private int _id;
+        private string _name;
+        private double _price;
+        private DateTime? _obtainedDate;
+        private Game _game;
+        private string _description;
+        private Rarity _rarity;
 
         public int Id { get; }
         public string Name { get; set; }
@@ -20,13 +20,20 @@ namespace Staut {
 
         protected Item(int id, string name, double price, Game game, string description, Rarity rarity)
         {
-            this.id = id;
-            this.name = name;
-            this.price = price;
-            this.obtainedDate = null;
-            this.game = game;
-            this.description = description;
-            this.rarity = rarity;
+            _id = id;
+            _name = name;
+            if(price < 0)
+            {
+                _price = 0;
+            }
+            else
+            {
+                _price = price;
+            }
+            _obtainedDate = null;
+            _game = game;
+            _description = description;
+            _rarity = rarity;
         }
     }
     

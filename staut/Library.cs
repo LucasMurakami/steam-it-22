@@ -17,7 +17,7 @@ namespace Staut {
             get => _itemList;
             set => _itemList = value ?? throw new ArgumentNullException(nameof(value));
         }
-        protected Library(List<Game> gameList, List<Item> itemList)
+        public Library(List<Game> gameList, List<Item> itemList)
         {
             GameList = gameList;
             ItemList = itemList;

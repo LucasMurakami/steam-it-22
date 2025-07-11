@@ -1,52 +1,122 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace Staut {
-    public class User {
-        int id;
-        String username;
-        String password;
-        String name;
-        String email;
-        double balance;
-        Library library;
-        String description;
-        Status status;
-        Cart cart;
-        int gems;
+namespace Staut
+{
+    public class User
+    {
+        public static int ID = 0;
+        private readonly int _id;
+        private readonly String _username;
+        private String _name;
+        private String _password;
+        private String _email;
+        private double _balance = 0.0;
+        private readonly Library _library = new Library(new List<Game>(), new List<Item>());
+        private String _description;
+        private Status _status;
+        private readonly Cart _cart = new Cart();
+        private int _gems = 0;
 
-        bool addBalance(double value) {
-            //implementation
-            return true;
+        public User(string username, string password, string name, string email, double balance, string description,
+            Status status, int gems)
+        {
+            _id = ID++;
+            _username = username;
+            _password = password;
+            _name = name;
+            _email = email;
+            _balance = balance;
+            _description = description;
+            _status = status;
+            _gems = gems;
         }
 
-        double checkBalance() {
-            //implementation
-            return 0.0;
+
+        private string Name
+        {
+            get => _name;
+
+            set
+            {
+                if (!String.IsNullOrEmpty(value))
+                {
+                    _name = value;
+                }
+            }
         }
 
-        List<Game> checkGames() {
-            //implementation
-            return null;
+        private string Password
+        {
+            get => _password;
+
+            set
+            {
+                if (!String.IsNullOrEmpty(value))
+                {
+                    _password = value;
+                }
+            }
         }
 
-        //checkItems
-        //checkItemsOfGame
-        //changeName
-        //changeDescription
-        //changeEmail
-        //changePassword
-        //changeStatus
-        //changeCart
+        private double Balance
+        {
+            get => _balance;
+
+            set
+            {
+                if (value > 0)
+                {
+                    _balance += value;
+                }
+            }
+        }
+
+        private List<Game> checkGames()
+        {
+            return _library.GameList;
+        }
+
+        private List<Item> checkItems()
+        {
+            return _library.ItemList;
+        }
+
+        private List<Item> checkItemsByGame(Game game)
+        {
+            List<Item> query = (from myGame in checkGames()
+                where myGame.Name.Equals(game.Name)
+                from item in myGame.Content
+                select item).ToList();
+
+            return query;
+        }
+
+        public string Description
+        {
+            get => _description;
+            private set => _description = value;
+        }
+
+        public string Email
+        {
+            get => _email;
+            private set => _email = value;
+        }
+
+        public Status Status
+        {
+            get => _status;
+            private set => _status = value;
+        }
+        
+        private Cart checkCart => _cart;
+
+        private int Gems
+        {
+            get => _gems;
+            set => _gems = value;
+        }
     }
-
-    public enum Status {
-        Online,
-        Offline,
-        Away,
-        Busy,
-        Invisible,
-        DoNotDisturb
-    }
-
 }

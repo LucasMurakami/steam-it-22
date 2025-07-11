@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Staut
-{
-    public class User
-    {
+namespace Staut {
+    public class User {
         public static int ID = 0;
         private readonly int _id;
         private readonly String _username;
@@ -20,8 +18,7 @@ namespace Staut
         private int _gems;
 
         public User(string username, string password, string name, string email, string description,
-            Status status)
-        {
+            Status status) {
             _id = ID++;
             _username = username;
             _password = password;
@@ -35,58 +32,60 @@ namespace Staut
             _balance = 0.0;
         }
 
-        private string Name
-        {
+        public string Name {
             get => _name;
 
-            set
-            {
-                if (!String.IsNullOrEmpty(value))
-                {
+            private set {
+                if (!String.IsNullOrEmpty(value)) {
                     _name = value;
                 }
             }
         }
 
-        private string Password
-        {
+        public string Password {
             get => _password;
 
-            set
-            {
-                if (!String.IsNullOrEmpty(value))
-                {
+            private set {
+                if (!String.IsNullOrEmpty(value)) {
                     _password = value;
                 }
             }
         }
 
-        public double Balance
-        {
-            get => _balance;
+        public double Balance => _balance;
 
-            set
-            {
-                if (value > 0)
-                {
-                    _balance += value;
-                }
+        public bool AddBalance(double amount) {
+            if (amount > 0) {
+                _balance += amount;
+                return true;
             }
+
+            return false;
+        }
+        
+        
+
+        public bool SubtractBalance(double amount)
+        {
+            if (amount > 0 && _balance >= amount)
+            {
+                _balance -= amount;
+                return true;
+            }
+
+            return false;
         }
 
-        private List<Game> checkGames()
-        {
+        public List<Game> CheckGames() {
             return _library.GameList;
         }
 
-        private List<Item> checkItems()
-        {
+        public List<Item> CheckItems() {
             return _library.ItemList;
         }
 
-        private List<Item> checkItemsByGame(Game game)
-        {
-            List<Item> query = (from myGame in checkGames()
+        public List<Item> CheckItemsByGame(Game game) {
+            List<Item> query = (from myGame in CheckGames()
                 where myGame.Name.Equals(game.Name)
                 from item in myGame.Content
                 select item).ToList();
@@ -94,30 +93,62 @@ namespace Staut
             return query;
         }
 
-        public string Description
-        {
+        public string Description {
             get => _description;
             private set => _description = value;
         }
 
-        public string Email
-        {
+        public bool ChangeDescription(string newDescription) {
+            if (!newDescription.Equals(" ")) {
+                Description = newDescription;
+                return true;
+            }
+
+            return false;
+        }
+
+        public string Email {
             get => _email;
             private set => _email = value;
         }
 
-        public Status Status
-        {
+        public bool ChangeEmail(string newEmail) {
+            if (!newEmail.Equals(" ")) {
+                Email = newEmail;
+                return true;
+            }
+
+            return false;
+        }
+
+        public Status Status {
             get => _status;
-            private set => _status = value;
+            set => _status = value;
+        }
+
+        public Cart CheckCart => _cart;
+
+        public int Gems => _gems;
+        
+        public bool AddGems(double amount) {
+            if (amount > 0) {
+                _balance += amount;
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool SubtractGems(double amount)
+        {
+            if (amount > 0 && _balance >= amount)
+            {
+                _balance -= amount;
+                return true;
+            }
+
+            return false;
         }
         
-        public Cart checkCart => _cart;
-
-        private int Gems
-        {
-            get => _gems;
-            set => _gems = value;
-        }
     }
 }

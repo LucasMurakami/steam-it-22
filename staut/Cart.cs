@@ -25,7 +25,7 @@ namespace Staut {
                 status: Status.Online
             );
 
-            user.checkCart.purchase();
+            user.CheckCart.purchase();
 
         }
         public Cart(User user) {
@@ -46,7 +46,7 @@ namespace Staut {
             Console.WriteLine("Total da compra: R$ " + totalPrice);
             Console.WriteLine("Aperte \"Enter\" para confirmar a compra");
 
-            this.user.Balance -= totalPrice;
+            this.user.SubtractBalance(totalPrice);
 
             Console.ReadKey();
             Console.Clear();

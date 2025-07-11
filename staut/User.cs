@@ -31,10 +31,12 @@ namespace Staut
             _status = status;
             _gems = 0;
             _library = new Library(new List<Game>(), new List<Item>());
-            _cart = new Cart();
+            _cart = new Cart(this);
             _balance = 0.0;
         }
 
+        public User() {
+        }
 
         private string Name
         {
@@ -62,7 +64,7 @@ namespace Staut
             }
         }
 
-        private double Balance
+        public double Balance
         {
             get => _balance;
 
@@ -113,7 +115,7 @@ namespace Staut
             private set => _status = value;
         }
         
-        private Cart checkCart => _cart;
+        public Cart checkCart => _cart;
 
         private int Gems
         {

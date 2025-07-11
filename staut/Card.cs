@@ -7,7 +7,8 @@ namespace Staut {
 
         public List<String> IconPackage { get; }
 
-        public Card(List<String> iconPackage, int id, string name, double price, Game game, string description, Rarity rarity) : Item(int id, string name, double price, Game game, string description, Rarity rarity)
+        public Card(List<String> iconPackage, int id, string name, double price, Game game, string description, Rarity rarity)
+            : base(id, name, price, game, description, rarity)
         {
             _iconPackage = iconPackage;
         }

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8VOJ0IHP5lQ=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\henri\\Desktop\\PUCRS\\IT Academy\\Staut\\steam-it-22\\staut\\staut.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\henri\\.nuget\\packages\\system.windows.extensions\\9.0.7\\system.windows.extensions.9.0.7.nupkg.sha512"
+  ],
+  "logs": []
+}

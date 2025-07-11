@@ -6,14 +6,19 @@ using System.IO;
 
 namespace Staut {
     public class Cart {
-        List<Game>? games;
-        List<Item>? items;
-        double totalPrice;
-        int gems;
+        private List<Game>? games;
+        private List<Item>? items;
+        private double totalPrice;
+        private int gems;
+        private User user;
 
         static string moneySound;
         SoundPlayer player;
 
+        static void Main(string[] args) {
+            Cart cart = new Cart();
+            cart.purchase();
+        }
         public Cart() {
             moneySound = "sounds/money.wav";
             player = new SoundPlayer(moneySound);
@@ -22,9 +27,16 @@ namespace Staut {
 
 
         public bool purchase() {
-            Console.WriteLine("Aperte qualquer tecla para comprar");
+            Console.Clear();
+            Console.WriteLine("Seu saldo: 0.0");
+            Console.WriteLine("Total da compra: R$ " + totalPrice);
+            Console.WriteLine("Aperte \"Enter\" para confirmar a compra");
+
             Console.ReadKey();
+            Console.Clear();
+            Console.WriteLine("Compra realizada com sucesso!");
             player.PlaySync();
+
 
             return true;
         }
@@ -38,9 +50,9 @@ namespace Staut {
 
         public void listItems() {
             StringBuilder builder = new StringBuilder();
-            foreach (Item item in items) {
-                builder.Append(item.Name + " | " + item.Price + "\n");
-            }
+            // foreach (Item item in items) {
+            //     builder.Append(item.Name + " | " + item.Price + "\n");
+            // }
         }
         
         public void listCart() {
@@ -49,10 +61,10 @@ namespace Staut {
             foreach (Game game in games) {
                 builder.Append(game.Name + " | " + game.Price + "\n");
             }
-            builder.Append("== GAMES ==\n");
-            foreach (Item item in items) {
-                builder.Append(item.Name + " | " + item.Price + "\n");
-            }
+            // builder.Append("== GAMES ==\n");
+            // foreach (Item item in items) {
+            //     builder.Append(item.Name + " | " + item.Price + "\n");
+            // }
         }
     }
 }

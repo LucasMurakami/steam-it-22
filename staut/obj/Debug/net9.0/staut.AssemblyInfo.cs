@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("staut")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d1cf6bf2fc026a7e603688c1427d39555d8cb85")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7dc49be74705061cd63dbe03515ff7bce8555e6")]
 [assembly: System.Reflection.AssemblyProductAttribute("staut")]
 [assembly: System.Reflection.AssemblyTitleAttribute("staut")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

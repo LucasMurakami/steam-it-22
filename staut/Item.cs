@@ -10,13 +10,5 @@ namespace Staut {
         String description;
         Rarity rarity;
     }
-
-    enum Rarity {
-        COMMON,
-        UNCOMMON,
-        RARE,
-        EPIC,
-        MYTHIC,
-        LEGENDARY
-    }
+    
 }

@@ -12,15 +12,4 @@ namespace Staut {
         int totalPurchase;
         Category category;
     }
-
-    public enum Category {
-        Action,
-        Adventure,
-        RPG,
-        Strategy,
-        Shooter,
-        Simulation,
-        Puzzle,
-        Multiplayer
-    }
 }

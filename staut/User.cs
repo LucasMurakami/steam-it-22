@@ -7,9 +7,9 @@ namespace Staut {
         
         private static int _globalIdCounter;
 
-        public int Id { get; }
-        public string Username { get; }
-        public string Password { get; }
+        private int Id { get; }
+        private string Username { get; }
+        private string Password { get; }
         public string Email { get; private set; }
         public string FullName { get; private set; }
         public string Description { get; private set; }

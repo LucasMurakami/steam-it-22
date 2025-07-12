@@ -130,20 +130,20 @@ namespace Staut {
 
         public int Gems => _gems;
         
-        public bool AddGems(double amount) {
+        public bool AddGems(int amount) {
             if (amount > 0) {
-                _balance += amount;
+                _gems += amount;
                 return true;
             }
 
             return false;
         }
 
-        public bool SubtractGems(double amount)
+        public bool SubtractGems(int amount)
         {
-            if (amount > 0 && _balance >= amount)
+            if (amount > 0 && _gems >= amount)
             {
-                _balance -= amount;
+                _gems -= amount;
                 return true;
             }
 

@@ -22,7 +22,7 @@ namespace Staut {
 
         public User(
             string username,
-            string password,
+            string pas,
             string fullName,
             string email,
             string description,
@@ -31,7 +31,7 @@ namespace Staut {
 
             if (string.IsNullOrWhiteSpace(username))
                 throw new ArgumentException("Username cannot be empty.");
-            if (string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(pas))
                 throw new ArgumentException("Password cannot be empty.");
             if (string.IsNullOrWhiteSpace(fullName))
                 throw new ArgumentException("Full name cannot be empty.");
@@ -40,7 +40,7 @@ namespace Staut {
 
             Id = _globalIdCounter++;
             Username = username;
-            Password = password;
+            Password = pas;
             FullName = fullName;
             Email = email;
             Description = description; 

@@ -4,7 +4,7 @@ public class App {
     public static void Main(string[] args) {
         User user = new User(
             username: "sharkboy99",
-            password: "senha123",
+            pas: "senha123",
             fullName: "Henrique Schultz",
             email: "henrique@devmail.com",
             description: "Fullstack-focused developer 🧠🔥",

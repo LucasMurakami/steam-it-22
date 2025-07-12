@@ -11,7 +11,7 @@ public class UserTests
     {
         _user = new User(
             username: "sharkboy99",
-            password: "senha123",
+            pas: "senha123",
             fullName: "Henrique Schultz",
             email: "henrique@devmail.com",
             description: "Desenvolvedor focado em ser fullstack 🧠🔥",

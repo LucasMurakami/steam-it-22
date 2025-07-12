@@ -1,86 +1,82 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Media;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
+using System.Media;
 
 namespace Staut {
+    [SuppressMessage("Interoperability", "CA1416:Validar a compatibilidade da plataforma")]
     public class Cart {
-        private List<Game>? games;
-        private List<Item>? items;
-        private double totalPrice;
-        private int gems;
-        private User user;
+        private readonly List<Game> _games;
+        private readonly List<Item> _items;
+        private readonly User _user;
+        private readonly SoundPlayer? _player;
 
-        static string moneySound;
-        SoundPlayer player;
-
-        static void Main(string[] args) {
-            User user = new User(
-                username: "sharkboy99",
-                password: "senha123",
-                name: "Henrique Schultz",
-                email: "henrique@devmail.com",
-                description: "Desenvolvedor focado em ser fullstack 🧠🔥",
-                status: Status.Online
-            );
-
-            user.CheckCart.purchase();
-
-        }
         public Cart(User user) {
-            moneySound = "sounds/money.wav";
-            player = new SoundPlayer(moneySound);
-            player.Load();
-            this.games = new List<Game>();
-            this.items = new List<Item>();
-            this.totalPrice = 0.0;
-            this.gems = 0;
-            this.user = user;
+            _games = new();
+            _items = new();
+            _user = user;
+            
+                var path = Path.Combine(AppContext.BaseDirectory, "sounds", "money.wav");
+                if (File.Exists(path)) {
+                    _player = new SoundPlayer(path);
+                    _player.Load();
+                } else {
+                    Console.WriteLine("Sound file not found at: " + path);
+                }
         }
 
+        public void AddGame(Game game) {
+            _games.Add(game);
+        }
 
-        public bool purchase() {
+        public void AddItem(Item item) {
+            _items.Add(item);
+        }
+
+        private double TotalPrice => 
+            _games.Sum(g => g.Price) + _items.Sum(i => i.Price);
+
+        public bool Purchase() {
             Console.Clear();
-            Console.WriteLine("Seu saldo: 0.0");
-            Console.WriteLine("Total da compra: R$ " + totalPrice);
-            Console.WriteLine("Aperte \"Enter\" para confirmar a compra");
-
-            this.user.SubtractBalance(totalPrice);
+            Console.WriteLine($"Your balance: ${_user.Balance:F2}");
+            Console.WriteLine($"Total purchase amount: ${TotalPrice:F2}");
+            Console.WriteLine("Press Enter to confirm your purchase");
 
             Console.ReadKey();
-            Console.Clear();
-            Console.WriteLine("Compra realizada com sucesso!");
-            Console.Clear();
-            Console.WriteLine("Compra realizada com sucesso!");
-            player.PlaySync();
-            return true;
-        }
 
-        public void listGames() {
-            StringBuilder builder = new StringBuilder();
-            foreach (Game game in games) {
-                builder.Append(game.Name + " | " + game.Price + "\n");
+            if (_user.SubtractBalance(TotalPrice)) {
+                Console.Clear();
+                Console.WriteLine("Purchase completed successfully!");
+                _player?.PlaySync();
+                return true;
+            } else {
+                Console.Clear();
+                Console.WriteLine("Insufficient balance.");
+                return false;
             }
         }
 
-        public void listItems() {
-            StringBuilder builder = new StringBuilder();
-            // foreach (Item item in items) {
-            //     builder.Append(item.Name + " | " + item.Price + "\n");
-            // }
+        private void ListGames() {
+            Console.WriteLine("== GAMES ==");
+            foreach (var game in _games) {
+                Console.WriteLine($"{game.Name} | ${game.Price:F2}");
+            }
         }
 
-        public void listCart() {
-            StringBuilder builder = new StringBuilder();
-            builder.Append("== GAMES ==\n");
-            foreach (Game game in games) {
-                builder.Append(game.Name + " | " + game.Price + "\n");
+        private void ListItems() {
+            Console.WriteLine("== ITEMS ==");
+            foreach (var item in _items) {
+                Console.WriteLine($"{item.Name} | ${item.Price:F2}");
             }
-            // builder.Append("== GAMES ==\n");
-            // foreach (Item item in items) {
-            //     builder.Append(item.Name + " | " + item.Price + "\n");
-            // }
+        }
+
+        public void ShowCart() {
+            Console.WriteLine("===== YOUR CART =====");
+            ListGames();
+            ListItems();
+            Console.WriteLine($"Total: ${TotalPrice:F2}");
         }
     }
 }

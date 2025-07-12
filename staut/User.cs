@@ -4,20 +4,21 @@ using System.Linq;
 
 namespace Staut {
     public class User {
+        
         private static int _globalIdCounter;
 
-        private int Id { get; }
-        private string Username { get; }
-        private string Password { get; }
-        private string Email { get;  set; }
-        private string FullName { get; set; }
-        private string Description { get;  set; }
-        private double Balance { get;  set; }
-        private int Gems { get; set; }
+        public int Id { get; }
+        public string Username { get; }
+        public string Password { get; }
+        public string Email { get; private set; }
+        public string FullName { get; private set; }
+        public string Description { get; private set; }
+        public double Balance { get; private set; }
+        public int Gems { get; private set; }
 
-        private Status Status { get; set; }
-        private Library Library { get; }
-        private Cart Cart { get; }
+        public Status Status { get; private set; }
+        public Library Library { get; }
+        public Cart Cart { get; }
 
         public User(
             string username,

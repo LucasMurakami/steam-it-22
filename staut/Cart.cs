@@ -60,14 +60,14 @@ namespace Staut {
 
         private void ListGames() {
             Console.WriteLine("== GAMES ==");
-            foreach (Game game in _games) {
+            foreach (var game in _games) {
                 Console.WriteLine($"{game.Name} | ${game.Price:F2}");
             }
         }
 
         private void ListItems() {
             Console.WriteLine("== ITEMS ==");
-            foreach (Item item in _items) {
+            foreach (var item in _items) {
                 Console.WriteLine($"{item.Name} | ${item.Price:F2}");
             }
         }

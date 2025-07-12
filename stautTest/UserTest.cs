@@ -12,7 +12,7 @@ public class UserTests
         _user = new User(
             username: "sharkboy99",
             password: "senha123",
-            name: "Henrique Schultz",
+            fullName: "Henrique Schultz",
             email: "henrique@devmail.com",
             description: "Desenvolvedor focado em ser fullstack 🧠🔥",
             status: Status.Online

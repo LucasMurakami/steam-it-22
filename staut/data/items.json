@@ -1,0 +1,32 @@
+[
+  {
+    "type": "Card",
+    "id": 1,
+    "name": "Cyberpunk Badge",
+    "price": 2.99,
+    "gameId": 1,
+    "description": "Rare badge from Night City",
+    "rarity": "Rare",
+    "icons": ["icon1.png", "icon2.png"]
+  },
+  {
+    "type": "Skin",
+    "id": 3,
+    "name": "Golden AK-47",
+    "price": 15.99,
+    "gameId": 2,
+    "description": "Shiny golden weapon skin",
+    "rarity": "Epic",
+    "texture": "gold_texture.png",
+    "baseCard": {
+      "type": "Card",
+      "id": 2,
+      "name": "Base Weapon",
+      "price": 0,
+      "gameId": 2,
+      "description": "",
+      "rarity": "Common",
+      "icons": []
+    }
+  }
+]

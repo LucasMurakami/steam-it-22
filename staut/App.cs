@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Staut;
 
@@ -94,27 +95,26 @@ public class App {
         Users[0].AddBalance(100.0);
         Users[0].AddGems(50);
 
+
+
         // Mockup Games
-        var sampleGames = new List<Game> {
-            new Game(1, "Cyberpunk 2077", "CD Projekt Red", DateTime.Now.AddYears(-2), 59.99, new List<Item>(), 1000000,
-                Category.Rpg),
-            new Game(2, "Counter-Strike 2", "Valve", DateTime.Now.AddYears(-1), 0.0, new List<Item>(), 50000000,
-                Category.Shooter),
-            new Game(3, "The Witcher 3", "CD Projekt Red", DateTime.Now.AddYears(-8), 39.99, new List<Item>(), 5000000,
-                Category.Rpg),
-            new Game(4, "Portal 2", "Valve", DateTime.Now.AddYears(-12), 9.99, new List<Item>(), 2000000,
-                Category.Puzzle),
-            new Game(5, "Civilization VI", "Firaxis Games", DateTime.Now.AddYears(-7), 59.99, new List<Item>(), 1500000,
-                Category.Strategy)
-        };
+
+        string filePath = AppContext.BaseDirectory;
+
+        for (int i = 0; i < 4; i++)
+        {
+            filePath = Path.GetDirectoryName(filePath);
+        }
+
+
+        string jsonFilePath = Path.Combine(filePath, "data", "games.json");
+        var sampleGames = FileReader.CreateGamesFromJson(jsonFilePath);
 
         // Mockup Items
-        var sampleItems = new List<Item> {
-            new Card(new List<string> { "icon1.png", "icon2.png" }, 1, "Cyberpunk Badge", 2.99, sampleGames[0],
-                "Rare badge from Night City", Rarity.Rare),
-            new Skin(new Card(new List<string>(), 2, "Base Weapon", 0, sampleGames[1], "", Rarity.Common),
-                "gold_texture.png", 3, "Golden AK-47", 15.99, sampleGames[1], "Shiny golden weapon skin", Rarity.Epic)
-        };
+
+        jsonFilePath = Path.GetDirectoryName(jsonFilePath);
+        jsonFilePath = Path.Combine(jsonFilePath, "items.json");
+        var sampleItems = FileReader.CreateItemsFromJson(jsonFilePath, sampleGames);
 
         // Mockup Store com Sales
         var salesGames = new List<Game> { sampleGames[2], sampleGames[3] }; // Witcher 3 and Portal 2 on sale

@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Cyberpunk 2077",
+    "publisher": "CD Projekt Red",
+    "publishedAt": "2023-07-14T00:00:00",
+    "price": 59.99,
+    "items": [],
+    "totalPurchase": 1000000,
+    "category": "Rpg"
+  },
+  {
+    "id": 2,
+    "name": "Counter-Strike 2",
+    "publisher": "Valve",
+    "publishedAt": "2024-07-14T00:00:00",
+    "price": 0.0,
+    "items": [],
+    "totalPurchase": 50000000,
+    "category": "Shooter"
+  },
+  {
+    "id": 3,
+    "name": "The Witcher 3",
+    "publisher": "CD Projekt Red",
+    "publishedAt": "2017-07-14T00:00:00",
+    "price": 39.99,
+    "items": [],
+    "totalPurchase": 5000000,
+    "category": "Rpg"
+  },
+  {
+    "id": 4,
+    "name": "Portal 2",
+    "publisher": "Valve",
+    "publishedAt": "2013-07-14T00:00:00",
+    "price": 9.99,
+    "items": [],
+    "totalPurchase": 2000000,
+    "category": "Puzzle"
+  },
+  {
+    "id": 5,
+    "name": "Civilization VI",
+    "publisher": "Firaxis Games",
+    "publishedAt": "2018-07-14T00:00:00",
+    "price": 59.99,
+    "items": [],
+    "totalPurchase": 1500000,
+    "category": "Strategy"
+  }
+]

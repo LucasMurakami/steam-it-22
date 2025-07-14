@@ -10,6 +10,16 @@
     "icons": ["icon1.png", "icon2.png"]
   },
   {
+    "type": "Card",
+    "id": 2,
+    "name": "Base Weapon",
+    "price": 0.0,
+    "gameId": 2,
+    "description": "",
+    "rarity": "Common",
+    "icons": []
+  },
+  {
     "type": "Skin",
     "id": 3,
     "name": "Golden AK-47",
@@ -22,8 +32,288 @@
       "type": "Card",
       "id": 2,
       "name": "Base Weapon",
-      "price": 0,
+      "price": 0.0,
       "gameId": 2,
+      "description": "",
+      "rarity": "Common",
+      "icons": []
+    }
+  },
+  {
+    "type": "Card",
+    "id": 4,
+    "name": "Witcher's Medallion",
+    "price": 3.49,
+    "gameId": 3,
+    "description": "Geralt's iconic medallion",
+    "rarity": "Rare",
+    "icons": ["wolf_icon.png"]
+  },
+  {
+    "type": "Skin",
+    "id": 5,
+    "name": "Portal Gun Chrome",
+    "price": 9.99,
+    "gameId": 4,
+    "description": "Sleek skin for the portal device",
+    "rarity": "Epic",
+    "texture": "chrome_portal.png",
+    "baseCard": {
+      "type": "Card",
+      "id": 6,
+      "name": "Portal Device",
+      "price": 1.49,
+      "gameId": 4,
+      "description": "Basic portal gun",
+      "rarity": "Common",
+      "icons": ["portal_icon.png"]
+    }
+  },
+  {
+    "type": "Card",
+    "id": 7,
+    "name": "Great General",
+    "price": 2.5,
+    "gameId": 5,
+    "description": "Powerful Civilization VI leader card",
+    "rarity": "Epic",
+    "icons": ["general_icon.png"]
+  },
+  {
+    "type": "Skin",
+    "id": 8,
+    "name": "Samurai Armor",
+    "price": 12.99,
+    "gameId": 6,
+    "description": "Legendary samurai armor set",
+    "rarity": "Legendary",
+    "texture": "samurai_texture.png",
+    "baseCard": {
+      "type": "Card",
+      "id": 9,
+      "name": "Armor Base",
+      "price": 0,
+      "gameId": 6,
+      "description": "",
+      "rarity": "Common",
+      "icons": []
+    }
+  },
+  {
+    "type": "Card",
+    "id": 10,
+    "name": "Valorant Spray",
+    "price": 1.99,
+    "gameId": 7,
+    "description": "Stylish in-game graffiti",
+    "rarity": "Uncommon",
+    "icons": ["spray.png"]
+  },
+  {
+    "type": "Skin",
+    "id": 11,
+    "name": "Starfruit Hat",
+    "price": 4.99,
+    "gameId": 8,
+    "description": "Goofy starfruit hat",
+    "rarity": "Rare",
+    "texture": "starfruit_hat.png",
+    "baseCard": {
+      "type": "Card",
+      "id": 12,
+      "name": "Farm Gear",
+      "price": 1.25,
+      "gameId": 8,
+      "description": "Basic farming toolset",
+      "rarity": "Common",
+      "icons": []
+    }
+  },
+  {
+    "type": "Card",
+    "id": 13,
+    "name": "Hades Flame",
+    "price": 2.75,
+    "gameId": 9,
+    "description": "Mythical underworld flame",
+    "rarity": "Rare",
+    "icons": ["flame_icon.png"]
+  },
+  {
+    "type": "Skin",
+    "id": 14,
+    "name": "Crewmate Blue",
+    "price": 1.99,
+    "gameId": 10,
+    "description": "Classic Among Us blue skin",
+    "rarity": "Common",
+    "texture": "blue_crewmate.png",
+    "baseCard": {
+      "type": "Card",
+      "id": 15,
+      "name": "Crewmate",
+      "price": 0.5,
+      "gameId": 10,
+      "description": "",
+      "rarity": "Common",
+      "icons": []
+    }
+  },
+  {
+    "type": "Card",
+    "id": 16,
+    "name": "Katana Slash",
+    "price": 3.25,
+    "gameId": 11,
+    "description": "Stylish slash effect",
+    "rarity": "Rare",
+    "icons": ["slash_icon.png"]
+  },
+  {
+    "type": "Skin",
+    "id": 17,
+    "name": "Diamond Pickaxe",
+    "price": 7.99,
+    "gameId": 12,
+    "description": "Shiny diamond texture",
+    "rarity": "Epic",
+    "texture": "diamond_pickaxe.png",
+    "baseCard": {
+      "type": "Card",
+      "id": 18,
+      "name": "Pickaxe",
+      "price": 0,
+      "gameId": 12,
+      "description": "Standard pickaxe",
+      "rarity": "Common",
+      "icons": []
+    }
+  },
+  {
+    "type": "Card",
+    "id": 19,
+    "name": "Terraria Slime",
+    "price": 1.75,
+    "gameId": 13,
+    "description": "Cute green slime enemy",
+    "rarity": "Common",
+    "icons": ["slime.png"]
+  },
+  {
+    "type": "Skin",
+    "id": 20,
+    "name": "Arthur's Hat",
+    "price": 5.99,
+    "gameId": 14,
+    "description": "Arthur Morgan’s signature hat",
+    "rarity": "Rare",
+    "texture": "arthur_hat.png",
+    "baseCard": {
+      "type": "Card",
+      "id": 21,
+      "name": "Cowboy Gear",
+      "price": 0.99,
+      "gameId": 14,
+      "description": "Standard cowboy gear",
+      "rarity": "Common",
+      "icons": []
+    }
+  },
+  {
+    "type": "Card",
+    "id": 22,
+    "name": "GTA V Cash Stack",
+    "price": 3.49,
+    "gameId": 15,
+    "description": "Pile of in-game currency",
+    "rarity": "Uncommon",
+    "icons": ["cash_stack.png"]
+  },
+  {
+    "type": "Card",
+    "id": 23,
+    "name": "Ironclad Strike",
+    "price": 1.99,
+    "gameId": 16,
+    "description": "Card from Ironclad deck",
+    "rarity": "Common",
+    "icons": ["strike_icon.png"]
+  },
+  {
+    "type": "Skin",
+    "id": 24,
+    "name": "Void Knight",
+    "price": 8.49,
+    "gameId": 17,
+    "description": "Dark armor set for Hollow Knight",
+    "rarity": "Legendary",
+    "texture": "void_knight.png",
+    "baseCard": {
+      "type": "Card",
+      "id": 25,
+      "name": "Hollow Shell",
+      "price": 0.5,
+      "gameId": 17,
+      "description": "",
+      "rarity": "Common",
+      "icons": []
+    }
+  },
+  {
+    "type": "Card",
+    "id": 26,
+    "name": "Cuphead's Blast",
+    "price": 2.5,
+    "gameId": 18,
+    "description": "Special ability animation",
+    "rarity": "Rare",
+    "icons": ["blast_icon.png"]
+  },
+  {
+    "type": "Skin",
+    "id": 27,
+    "name": "Hell Slayer",
+    "price": 11.99,
+    "gameId": 19,
+    "description": "Fiery armor for Doom Slayer",
+    "rarity": "Epic",
+    "texture": "hell_slayer.png",
+    "baseCard": {
+      "type": "Card",
+      "id": 28,
+      "name": "Marine Base",
+      "price": 0,
+      "gameId": 19,
+      "description": "",
+      "rarity": "Common",
+      "icons": []
+    }
+  },
+  {
+    "type": "Card",
+    "id": 29,
+    "name": "Estus Flask",
+    "price": 2.25,
+    "gameId": 20,
+    "description": "Vital healing item",
+    "rarity": "Uncommon",
+    "icons": ["flask.png"]
+  },
+  {
+    "type": "Skin",
+    "id": 30,
+    "name": "Kerbonaut Suit",
+    "price": 6.5,
+    "gameId": 21,
+    "description": "Stylized space suit for Kerbals",
+    "rarity": "Rare",
+    "texture": "kerbonaut.png",
+    "baseCard": {
+      "type": "Card",
+      "id": 31,
+      "name": "Basic Suit",
+      "price": 0,
+      "gameId": 21,
       "description": "",
       "rarity": "Common",
       "icons": []

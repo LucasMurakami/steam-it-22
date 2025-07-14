@@ -354,10 +354,13 @@ public class App {
         Console.WriteLine($"Balance: ${_currentUser?.Balance:F2}");
         Console.WriteLine($"Gems: {_currentUser?.Gems}");
         Console.WriteLine($"Games Owned: {_currentUser?.CheckGames().Count}");
+        Console.WriteLine($"Items Owned: {_currentUser?.CheckItems().Count}");
         Console.WriteLine();
         Console.WriteLine("Options:");
         Console.WriteLine("Type BALANCE to add money in the account.");
+        Console.WriteLine("Type GEMS to add gems in the account.");
         Console.WriteLine("Or type BACK to move to the main menu");
+        Console.WriteLine();
         Console.Write("Your choice: ");
         var choice = Console.ReadLine();
         
@@ -366,16 +369,26 @@ public class App {
             Console.WriteLine("Enter amount of money to add to the account.");
             var amountInput = Console.ReadLine();
             if (int.TryParse(amountInput, out var amount)) {
-                _currentUser.AddBalance(amount);
-                Console.WriteLine($"You added ${amount} to your account.");
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
+                var sucess =_currentUser.AddBalance(amount);
+                if (sucess) {
+                    Console.WriteLine($"You added ${amount} to your account.");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                }
             }
         }
-        else if (choice?.ToLower() == "back") {
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+        else if (choice?.ToLower() == "gems") {
+            Console.Clear();
+            Console.WriteLine("Enter amount of gems to add to the account.");
+            var amountInput = Console.ReadLine();
+            if (int.TryParse(amountInput, out var amount)) {
+                var sucess = _currentUser.AddGems(amount);
+                if (sucess) {
+                    Console.WriteLine($"You added {amount} gems to your account.");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                }
+            }
         }
-        
     }
 }

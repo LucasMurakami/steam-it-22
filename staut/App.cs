@@ -355,7 +355,27 @@ public class App {
         Console.WriteLine($"Gems: {_currentUser?.Gems}");
         Console.WriteLine($"Games Owned: {_currentUser?.CheckGames().Count}");
         Console.WriteLine();
-        Console.WriteLine("Press any key to return to main menu...");
-        Console.ReadKey();
+        Console.WriteLine("Options:");
+        Console.WriteLine("Type BALANCE to add money in the account.");
+        Console.WriteLine("Or type BACK to move to the main menu");
+        Console.Write("Your choice: ");
+        var choice = Console.ReadLine();
+        
+        if (choice?.ToLower() == "balance") {
+            Console.Clear();
+            Console.WriteLine("Enter amount of money to add to the account.");
+            var amountInput = Console.ReadLine();
+            if (int.TryParse(amountInput, out var amount)) {
+                _currentUser.AddBalance(amount);
+                Console.WriteLine($"You added ${amount} to your account.");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+        }
+        else if (choice?.ToLower() == "back") {
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
+        
     }
 }

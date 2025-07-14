@@ -13,6 +13,10 @@ namespace Staut {
         private readonly User _user;
         private readonly SoundPlayer? _player;
 
+        public List<Game> Games => _games;
+
+        public List<Item> Items => _items;
+
         public Cart(User user) {
             _games = new();
             _items = new();
@@ -48,6 +52,20 @@ namespace Staut {
 
             if (_user.SubtractBalance(TotalPrice)) {
                 Console.Clear();
+                if (_games.Any()) {
+                    foreach (Game game in _games) {
+                        _user.Library.AddGame(game);
+                    }
+                    _games.Clear();
+                }
+                
+                if (_items.Any()) {
+                    foreach (Item item in _items) {
+                        _user.Library.AddItem(item);
+                    }
+                    _items.Clear();
+                }
+                
                 Console.WriteLine("Purchase completed successfully!");
                 _player?.PlaySync();
                 return true;

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Staut {
     public class Library {
-        private readonly List<Game> _gameList = [];
-        private readonly List<Item> _itemList = [];
+        private List<Game> _gameList = [];
+        private List<Item> _itemList = [];
         
         public List<Game> GameList
         {
@@ -17,6 +17,30 @@ namespace Staut {
             get => _itemList;
             private init => _itemList = value ?? throw new ArgumentNullException(nameof(value));
         }
+        
+        public void AddGame(Game game)
+        {
+            if (game == null)
+                throw new ArgumentNullException(nameof(game));
+                
+            if (!_gameList.Contains(game))
+            {
+                _gameList.Add(game);
+            }
+        }
+
+        public void AddItem(Item item) 
+        {
+            if (item == null) {
+                throw new ArgumentNullException(nameof(item));
+            }
+            
+            if (!_itemList.Contains(item))
+            {
+                _itemList.Add(item);
+            }
+        }
+        
         public Library(List<Game> gameList, List<Item> itemList)
         {
             GameList = gameList;

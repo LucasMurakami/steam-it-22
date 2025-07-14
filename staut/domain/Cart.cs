@@ -35,12 +35,12 @@ namespace Staut {
             _games.Add(game);
         }
 
-        public void RemoveItem(Item item) {
-            _items.Remove(item);
+        public bool RemoveItem(Item item) {
+            return _items.Remove(item);
         }
 
-        public void RemoveGame(Game game) {
-            _games.Remove(game);
+        public bool RemoveGame(Game game) {
+            return _games.Remove(game);
         }
 
         public void AddItem(Item item) {
@@ -86,20 +86,25 @@ namespace Staut {
 
         private void ListGames() {
             Console.WriteLine("== GAMES ==");
+            int counter = 0;
             foreach (var game in _games) {
-                Console.WriteLine($"{game.Name} | ${game.Price:F2}");
+                Console.WriteLine($"{++counter}: {game.Name} | ${game.Price:F2}");
             }
         }
 
         private void ListItems() {
             Console.WriteLine("== ITEMS ==");
+            int counter = 0;
             foreach (var item in _items) {
-                Console.WriteLine($"{item.Name} | ${item.Price:F2}");
+                Console.WriteLine($"{++counter}: " +
+                                  $"{item.Name} | ${item.Price:F2}");
             }
         }
 
         public void ShowCart() {
-            Console.WriteLine("===== YOUR CART =====");
+            Console.WriteLine("╔════════════════════════════════════════╗");
+            Console.WriteLine("║               MY CART                  ║");
+            Console.WriteLine("╚════════════════════════════════════════╝");
             ListGames();
             ListItems();
             Console.WriteLine($"Total: ${TotalPrice:F2}");

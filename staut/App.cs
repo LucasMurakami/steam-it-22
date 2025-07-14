@@ -172,6 +172,15 @@ public class App {
                 case "5":
                     running = false;
                     break;
+                case "cheat":
+                    foreach (Game game in _store.GameList) {
+                        _currentUser.Library.AddGame(game);
+                    }
+
+                    foreach (Item item in _store.ItemList) {
+                        _currentUser.Library.AddItem(item);
+                    }
+                    break;
                 default:
                     Console.WriteLine("Invalid option. Press any key to continue...");
                     Console.ReadKey();
@@ -194,6 +203,8 @@ public class App {
         Console.WriteLine("5. Exit");
         Console.WriteLine();
         Console.Write("Choose an option: ");
+        Console.WriteLine("Item qtty: " + _currentUser.Library.ItemList.Count());
+        Console.WriteLine("Game qtty: " + _currentUser.Library.GameList.Count());
     }
 
     private static void ShowStore() {

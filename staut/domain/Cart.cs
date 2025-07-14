@@ -21,8 +21,13 @@ namespace Staut {
             _games = new();
             _items = new();
             _user = user;
-            
-                var path = Path.Combine(AppContext.BaseDirectory, "sounds", "money.wav");
+
+                string filePath = AppContext.BaseDirectory;
+                for (int i = 0; i < 4; i++)
+                {
+                    filePath = Path.GetDirectoryName(filePath);
+                }
+                var path = Path.Combine(filePath, "sounds", "money.wav");
                 if (File.Exists(path)) {
                     _player = new SoundPlayer(path);
                     _player.Load();

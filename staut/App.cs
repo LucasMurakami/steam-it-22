@@ -122,7 +122,7 @@ public class App {
             Console.WriteLine("╚════════════════════════════════════════╝");
             Console.WriteLine();
             
-            Console.WriteLine("🔥 FEATURED GAMES:");
+            Console.WriteLine("FEATURED GAMES:");
             for (int i = 0; i < _store!.GameList.Count; i++) {
                 var game = _store.GameList[i];
                 var saleIndicator = _store.SalesGame.Contains(game) ? " [ON SALE!]" : "";
@@ -195,25 +195,49 @@ public class App {
     }
 
     private static void ShowCart() {
-        Console.Clear();
-        _currentUser!.Cart.ShowCart();
-        Console.WriteLine();
-        Console.WriteLine("Options:");
-        Console.WriteLine("1. Purchase items");
-        Console.WriteLine("2. Return to main menu");
-        Console.Write("Your choice: ");
-        
-        var choice = Console.ReadLine();
-        
-        if (choice == "1") {
-            bool success = _currentUser.Cart.Purchase();
-            if (success) {
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
-            } else {
-                Console.WriteLine("Error occurred. Press any key to continue...");
+        var inCart = true;
+        while (inCart) {
+            Console.Clear();
+            _currentUser!.Cart.ShowCart();
+            Console.WriteLine();
+            Console.WriteLine("Options:");
+            Console.WriteLine("Type BUY to purchase all items.");
+            Console.WriteLine("Type the number of the game to remove it from the cart");
+            Console.WriteLine("Or type BACK to move to the main menu");
+            Console.Write("Your choice: ");
+            var choice = Console.ReadLine();
+
+            if (choice?.ToLower() == "buy") {
+                var success = _currentUser.Cart.Purchase();
+                if (success) {
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                }
+                else {
+                    Console.WriteLine("Error occurred. Press any key to continue...");
+                    Console.ReadKey();
+                }
+                continue;
+            }
+            if (choice?.ToLower() == "back") {
+                inCart = false;
+                continue;
+            }
+
+            if (int.TryParse(choice, out var number) && number > 0 && number <= _currentUser.Cart.Games.Count) {
+                var selectedGame = _currentUser.Cart.Games[number - 1];
+                var success = _currentUser.Cart.RemoveGame(selectedGame); 
+                
+                Console.WriteLine(success
+                    ? $"Game {selectedGame.Name} removed from cart!"
+                    : "Error occurred. Unable to remove game from cart.");
                 Console.ReadKey();
             }
+            else {
+                Console.WriteLine("Invalid input. Please try again.");
+                Console.ReadKey();
+            }
+
         }
     }
 

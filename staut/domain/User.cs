@@ -86,9 +86,9 @@ namespace Staut{
             return Library.ItemList;
         }
         
-        public List<Item> CheckItemsByGame(Game game) {
+        public List<Item> CheckItemsByGame(string gameName) {
             List<Item> query = (from myGame in CheckGames()
-                where myGame.Name.Equals(game.Name)
+                where myGame.Name.Equals(gameName)
                 from item in myGame.Content
                 select item).ToList();
 

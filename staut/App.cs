@@ -196,52 +196,79 @@ public class App {
             Console.WriteLine("╚════════════════════════════════════════╝");
             Console.WriteLine();
             
+            
             Console.WriteLine("FEATURED GAMES:");
             for (int i = 0; i < _store!.GameList.Count; i++) {
                 var game = _store.GameList[i];
                 var saleIndicator = _store.SalesGame.Contains(game) ? " [ON SALE!]" : "";
                 var inCartIndicator = _currentUser!.Cart.Games.Contains(game) ? " [IN CART]" : "";
                 var ownedIndicator = _currentUser.CheckGames().Contains(game) ? " [OWNED]" : "";
-                
-                Console.WriteLine($"{i + 1}. {game.Name} - ${game.Price:F2}{saleIndicator}{inCartIndicator}{ownedIndicator}");
+
+                Console.WriteLine($"G{i + 1}. {game.Name} - ${game.Price:F2}{saleIndicator}{inCartIndicator}{ownedIndicator}");
                 Console.WriteLine($"   Publisher: {game.Publisher} | Category: {game.Category}");
                 Console.WriteLine();
             }
-            
+
+            Console.WriteLine("FEATURED ITEMS:");
+            for (int i = 0; i < _store.ItemList.Count; i++) {
+                var item = _store.ItemList[i];
+                string itemType = item.GetType().Name;
+
+                var saleIndicator = _store.SalesItem.Contains(item) ? " [ON SALE!]" : "";
+                var inCartIndicator = _currentUser!.Cart.Items.Contains(item) ? " [IN CART]" : "";
+                var ownedIndicator = _currentUser.CheckItems().Contains(item) ? " [OWNED]" : "";
+
+                Console.WriteLine($"I{i + 1}. {item.Name} - {item.Price:F2} GEMS | {saleIndicator}{inCartIndicator}{ownedIndicator}");
+                Console.WriteLine($"   Type: {itemType}");
+                Console.WriteLine();
+            }
+
             Console.WriteLine("Options:");
-            Console.WriteLine("Enter game number to add to cart");
+            Console.WriteLine("Enter G# to add a game (e.g., G2)");
+            Console.WriteLine("Enter I# to add an item (e.g., I1)");
             Console.WriteLine("'back' to return to main menu");
             Console.Write("Your choice: ");
-            
-            var input = Console.ReadLine();
-            
-            if (input?.ToLower() == "back") {
+
+            var input = Console.ReadLine()?.ToUpper();
+
+            if (input == "BACK") {
                 inStore = false;
-            } else if (int.TryParse(input, out int gameIndex) && gameIndex > 0 && gameIndex <= _store.GameList.Count) {
-                var selectedGame = _store.GameList[gameIndex - 1];
-                
-                
+            }
+            else if (input!.StartsWith("G") && int.TryParse(input.Substring(1), out int gIndex) &&
+                     gIndex > 0 && gIndex <= _store.GameList.Count) {
+                var selectedGame = _store.GameList[gIndex - 1];
+    
                 if (_currentUser!.CheckGames().Contains(selectedGame)) {
                     Console.WriteLine($"\nYou already own '{selectedGame.Name}'!");
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey();
-                }
-                
-                else if (_currentUser.Cart.Games.Contains(selectedGame)) {
+                } else if (_currentUser.Cart.Games.Contains(selectedGame)) {
                     Console.WriteLine($"\n'{selectedGame.Name}' is already in your cart!");
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey();
-                }
-                else {
+                } else {
                     _currentUser.Cart.AddGame(selectedGame);
                     Console.WriteLine($"\n'{selectedGame.Name}' added to cart!");
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey();
                 }
-            } else {
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+            else if (input.StartsWith("I") && int.TryParse(input.Substring(1), out int iIndex) &&
+                     iIndex > 0 && iIndex <= _store.ItemList.Count) {
+                var selectedItem = _store.ItemList[iIndex - 1];
+
+                if (_currentUser!.CheckItems().Contains(selectedItem)) {
+                    Console.WriteLine($"\nYou already own '{selectedItem.Name}'!");
+                } else if (_currentUser.Cart.Items.Contains(selectedItem)) {
+                    Console.WriteLine($"\n'{selectedItem.Name}' is already in your cart!");
+                } else {
+                    _currentUser.Cart.AddItem(selectedItem);
+                    Console.WriteLine($"\n'{selectedItem.Name}' added to cart!");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+            else {
                 Console.WriteLine("Invalid selection. Press any key to continue...");
                 Console.ReadKey();
             }
+
         }
     }
 

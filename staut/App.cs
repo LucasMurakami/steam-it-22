@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Staut;
 
@@ -116,8 +117,14 @@ public class App {
         jsonFilePath = Path.Combine(jsonFilePath, "items.json");
         var sampleItems = FileReader.CreateItemsFromJson(jsonFilePath, sampleGames);
 
-        sampleGames[0].Content.Add(sampleItems[0]);
-        sampleGames[1].Content.Add(sampleItems[1]);
+        foreach (var item in sampleItems)
+        {
+            var game = sampleGames.FirstOrDefault(g => g.Id == item.Game.Id);
+            if (game != null)
+            {
+                game.Content.Add(item);
+            }
+        }
 
         // Mockup Store com Sales
         var salesGames = new List<Game> { sampleGames[2], sampleGames[3] }; // Witcher 3 and Portal 2 on sale

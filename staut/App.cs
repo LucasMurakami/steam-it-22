@@ -116,6 +116,9 @@ public class App {
         jsonFilePath = Path.Combine(jsonFilePath, "items.json");
         var sampleItems = FileReader.CreateItemsFromJson(jsonFilePath, sampleGames);
 
+        sampleGames[0].Content.Add(sampleItems[0]);
+        sampleGames[1].Content.Add(sampleItems[1]);
+
         // Mockup Store com Sales
         var salesGames = new List<Game> { sampleGames[2], sampleGames[3] }; // Witcher 3 and Portal 2 on sale
         var salesItems = new List<Item> { sampleItems[0] }; // Cyberpunk badge on sale
@@ -218,7 +221,7 @@ public class App {
                 var inCartIndicator = _currentUser!.Cart.Items.Contains(item) ? " [IN CART]" : "";
                 var ownedIndicator = _currentUser.CheckItems().Contains(item) ? " [OWNED]" : "";
 
-                Console.WriteLine($"I{i + 1}. {item.Name} - {item.Price:F2} GEMS | {saleIndicator}{inCartIndicator}{ownedIndicator}");
+                Console.WriteLine($"I{i + 1}. {item.Name} - ${item.Price:F2} | {saleIndicator}{inCartIndicator}{ownedIndicator}");
                 Console.WriteLine($"   Type: {itemType}");
                 Console.WriteLine();
             }
@@ -280,13 +283,53 @@ public class App {
         Console.WriteLine();
         
         var userGames = _currentUser!.CheckGames();
+        var userItems = _currentUser!.CheckItems();
         
         if (userGames.Count == 0) {
-            Console.WriteLine("Your library is empty. Visit the store to buy games!");
+            Console.WriteLine("Your library of games is empty. Visit the store to buy games!");
         } else {
             Console.WriteLine("Your Games:");
             foreach (var game in userGames) {
                 Console.WriteLine($"• {game.Name} ({game.Category})");
+            }
+        }
+
+        if (userItems.Count == 0) {
+            Console.WriteLine("Your library of items is empty. Visit the store to buy items!");
+        }
+        else {
+            Console.WriteLine("Your Items:");
+            foreach (var item in userItems) {
+                Console.WriteLine($"• {item.Name} ({item.Game.Name})");
+            }
+        }
+        
+        
+        Console.WriteLine();
+        Console.WriteLine("Options:");
+        Console.WriteLine("Type SEARCH to search for items by Game.");
+        Console.Write("Your choice: ");
+        var choice = Console.ReadLine();
+
+        if (choice?.ToLower() == "search") {
+            Console.Clear();
+            Console.WriteLine("Enter Game Name:");
+            var gameChoice = Console.ReadLine();
+
+            if (String.IsNullOrWhiteSpace(gameChoice)) {
+                Console.WriteLine("Game Name is empty!");
+            }
+            
+            var userItemsByGame = _currentUser.CheckItemsByGame(gameChoice);
+            
+            if (userItemsByGame.Count == 0)
+            {
+                Console.WriteLine("No items found!");
+            }
+            else {
+                foreach (var item in userItemsByGame) {
+                    Console.WriteLine($"- {item.Name} ({item.Game.Name}) - {item.Rarity} - {item.Description}");
+                }
             }
         }
         

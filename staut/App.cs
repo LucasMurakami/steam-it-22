@@ -338,7 +338,7 @@ public class App {
                 Console.WriteLine("Game Name is empty!");
             }
             
-            var userItemsByGame = _currentUser.CheckItemsByGame(gameChoice);
+            var userItemsByGame = _currentUser.CheckItemsByGame(gameChoice.ToLower());
             
             if (userItemsByGame.Count == 0)
             {

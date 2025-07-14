@@ -4,42 +4,116 @@ using System.Collections.Generic;
 namespace Staut;
 
 public class App {
-    private static User? _currentUser;
+    private static readonly List<User> Users = new List<User>();
+    private static User? _currentUser = null;
     private static Store? _store;
 
     public static void Main(string[] args) {
         InitializeData();
-        ShowWelcomeScreen();
-        MainLoop();
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine(
+            "\t\t ████████████████████████████████▀▀▀▀████████████████████████████████████████████ \n" +
+            "\t\t ██████████████████████████████▀─▄▀▀▄─▀██████████████████████████████████████████ \n" +
+            "\t\t ████▀─▄▄─▀████████████████████─█────█─██████████████████████████████████████████ \n" +
+            "\t\t ███─▄▀──▀─▀███████████████████─▀▄──▄▀─██████████████████████████████████████████ \n" +
+            "\t\t ███─█───────▀█████████████████▄──▀▀───██████████████████████████████████████████ \n" +
+            "\t\t ███▄─▀▄▄▀─────▀███████████████▀─────▄██████░░░░░█░░░░░░█░░░███░░███░░█░░░░░░████ \n" +
+            "\t\t █████▄▄▄▄█▄─────▀████████████▀─────▄███████░░██████░░███░░░███░░███░░███░░██████ \n" +
+            "\t\t ████████████▄─────▀█████████▀─────▄████████░░░░░███░░██░░█░░██░░███░░███░░██████ \n" +
+            "\t\t ██████████████▄─────▀██████▀─────▄████████████░░███░░██░░░░░██░░███░░███░░██████ \n" +
+            "\t\t ████████████████▄─────▀▀──▀─────▄██████████░░░░░███░░█░░░█░░░██░░░░░████░░██████ \n" +
+            "\t\t ██████████████████▄──────▀▀▄───▄████████████████████████████████████████████████ \n" +
+            "\t\t ████████████████████▄───────█─▄█████████████████████████████████████████████████ \n" +
+            "\t\t ██████████████████████▄─▄──▄▀─██████████████████████████████████████████████████ \n" +
+            "\t\t ███████████████████████▄─▀▀─▄███████████████████████████████████████████████████ \n" +
+            "\t\t ████████████████████████████████████████████████████████████████████████████████ \n" );
+        Console.ResetColor();
+        Console.ReadKey();
+        
+        
+        while (_currentUser == null) {
+            bool login = Login();
+
+            if (login) {
+                ShowWelcomeScreen();
+                MainLoop();
+            }
+        }
+    }
+
+    static bool Login() {
+        Console.WriteLine("Enter your username: ");
+        var username = Console.ReadLine();
+        Console.WriteLine("Enter your password: ");
+        var password = Console.ReadLine();
+
+        if (String.IsNullOrWhiteSpace(username) || String.IsNullOrWhiteSpace(password)) {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("╔════════════════════════════════════════╗");
+            Console.WriteLine("║       Empty username or password       ║");
+            Console.WriteLine("╚════════════════════════════════════════╝");
+            Console.WriteLine("Press any key to try again...");
+            Console.ResetColor();
+            Console.ReadKey();
+            Console.Clear();
+            return false;
+        }
+
+        foreach (var u in Users) {
+            if (u.Login(password, username)) {
+                _currentUser = u;
+                return true;
+            }
+        }
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("╔════════════════════════════════════════╗");
+        Console.WriteLine("║      Invalid username or password      ║");
+        Console.WriteLine("╚════════════════════════════════════════╝");
+        Console.WriteLine("Press any key to try again...");
+        Console.ResetColor();
+        Console.ReadKey();
+        Console.Clear();
+
+        return false;
     }
 
     private static void InitializeData() {
-        _currentUser = new User(
+        Users.Add(new User(
             username: "sharkboy99",
             pas: "senha123",
             fullName: "Henrique Schultz",
             email: "henrique@devmail.com",
             description: "Fullstack-focused developer 🧠🔥",
             status: Status.Online
-        );
-        
+        ));
+
         // Currency For Test
-        _currentUser.AddBalance(100.0);
-        _currentUser.AddGems(50);
+        Users[0].AddBalance(100.0);
+        Users[0].AddGems(50);
 
         // Mockup Games
         var sampleGames = new List<Game> {
-            new Game(1, "Cyberpunk 2077", "CD Projekt Red", DateTime.Now.AddYears(-2), 59.99, new List<Item>(), 1000000, Category.Rpg),
-            new Game(2, "Counter-Strike 2", "Valve", DateTime.Now.AddYears(-1), 0.0, new List<Item>(), 50000000, Category.Shooter),
-            new Game(3, "The Witcher 3", "CD Projekt Red", DateTime.Now.AddYears(-8), 39.99, new List<Item>(), 5000000, Category.Rpg),
-            new Game(4, "Portal 2", "Valve", DateTime.Now.AddYears(-12), 9.99, new List<Item>(), 2000000, Category.Puzzle),
-            new Game(5, "Civilization VI", "Firaxis Games", DateTime.Now.AddYears(-7), 59.99, new List<Item>(), 1500000, Category.Strategy)
+            new Game(1, "Cyberpunk 2077", "CD Projekt Red", DateTime.Now.AddYears(-2), 59.99, new List<Item>(), 1000000,
+                Category.Rpg),
+            new Game(2, "Counter-Strike 2", "Valve", DateTime.Now.AddYears(-1), 0.0, new List<Item>(), 50000000,
+                Category.Shooter),
+            new Game(3, "The Witcher 3", "CD Projekt Red", DateTime.Now.AddYears(-8), 39.99, new List<Item>(), 5000000,
+                Category.Rpg),
+            new Game(4, "Portal 2", "Valve", DateTime.Now.AddYears(-12), 9.99, new List<Item>(), 2000000,
+                Category.Puzzle),
+            new Game(5, "Civilization VI", "Firaxis Games", DateTime.Now.AddYears(-7), 59.99, new List<Item>(), 1500000,
+                Category.Strategy)
         };
 
         // Mockup Items
         var sampleItems = new List<Item> {
-            new Card(new List<string> { "icon1.png", "icon2.png" }, 1, "Cyberpunk Badge", 2.99, sampleGames[0], "Rare badge from Night City", Rarity.Rare),
-            new Skin(new Card(new List<string>(), 2, "Base Weapon", 0, sampleGames[1], "", Rarity.Common), "gold_texture.png", 3, "Golden AK-47", 15.99, sampleGames[1], "Shiny golden weapon skin", Rarity.Epic)
+            new Card(new List<string> { "icon1.png", "icon2.png" }, 1, "Cyberpunk Badge", 2.99, sampleGames[0],
+                "Rare badge from Night City", Rarity.Rare),
+            new Skin(new Card(new List<string>(), 2, "Base Weapon", 0, sampleGames[1], "", Rarity.Common),
+                "gold_texture.png", 3, "Golden AK-47", 15.99, sampleGames[1], "Shiny golden weapon skin", Rarity.Epic)
         };
 
         // Mockup Store com Sales
@@ -100,7 +174,7 @@ public class App {
 
     private static void ShowMainMenu() {
         Console.WriteLine("╔════════════════════════════════════════╗");
-        Console.WriteLine("║                STAUT MENU             ║");
+        Console.WriteLine("║                STAUT MENU              ║");
         Console.WriteLine("╚════════════════════════════════════════╝");
         Console.WriteLine();
         Console.WriteLine("1. Store");
@@ -237,7 +311,6 @@ public class App {
                 Console.WriteLine("Invalid input. Please try again.");
                 Console.ReadKey();
             }
-
         }
     }
 

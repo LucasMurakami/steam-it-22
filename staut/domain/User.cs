@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Staut {
-    public class User {
+namespace Staut{
+    public class User : ILoginnable {
         
         private static int _globalIdCounter;
 
         private int Id { get; }
         private string Username { get; }
-        private string Password { get; }
+        
+        private string _password;
         public string Email { get; private set; }
         public string FullName { get; private set; }
         public string Description { get; private set; }
@@ -40,7 +41,7 @@ namespace Staut {
 
             Id = _globalIdCounter++;
             Username = username;
-            Password = pas;
+            _password = pas;
             FullName = fullName;
             Email = email;
             Description = description; 
@@ -50,6 +51,8 @@ namespace Staut {
             Library = new Library(new List<Game>(), new List<Item>());
             Cart = new Cart(this);
         }
+
+        private string Password  => _password;
         
         /*
          * ===BALANCE METHODS===
@@ -132,5 +135,12 @@ namespace Staut {
             return true;
         }
 
+        public bool Login(string passwordAttempt, string usernameAttempt) {
+            if (Password == passwordAttempt && usernameAttempt == Username) {
+                return true;
+            } 
+            return false;
+        }
+        
     }
 }

@@ -35,6 +35,14 @@ namespace Staut {
             _games.Add(game);
         }
 
+        public void RemoveItem(Item item) {
+            _items.Remove(item);
+        }
+
+        public void RemoveGame(Game game) {
+            _games.Remove(game);
+        }
+
         public void AddItem(Item item) {
             _items.Add(item);
         }
